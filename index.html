@@ -3,42 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Contact, Education & Skills Section</title>
+    <title>TEAPLUS SRISUWAN - Resume</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* สไตล์หลักสำหรับ Background และ Font */
+        /* CSS จากคำตอบก่อนหน้า (Sidebar, Contact, Education, Skills) 
+           รวมถึง CSS ใหม่ด้านบน (Layout, Header, Work Experience) ให้ใส่ไว้ที่นี่ทั้งหมด */
+        
+        /* ------------------------------------------------------------- */
+        /* --- LAYOUT & HEADER STYLES --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
         }
-
+        .container {
+            width: 100%;
+            max-width: 1200px; 
+            margin: 0 auto;
+            background-color: #ffffff; 
+            display: flex; 
+        }
         .sidebar {
             width: 300px;
-            background-color: #0b1a3d; /* สีพื้นหลังเข้มเหมือนในรูป */
-            color: #ffffff; /* สีข้อความ */
+            background-color: #0b1a3d; 
+            color: #ffffff; 
             padding: 20px 0;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            min-height: 100vh;
         }
-
-        /* ส่วนรูปโปรไฟล์ ที่แก้ไขเพื่อให้ใช้แท็ก <img> ได้ดีขึ้น */
+        .main-content {
+            flex-grow: 1; 
+            padding: 30px;
+        }
+        .header {
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #ccc;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #0b1a3d;
+        }
+        .header h2 {
+            font-size: 1.1em;
+            margin: 5px 0 0 0;
+            color: #333;
+            font-weight: normal;
+        }
+        
+        /* --- SIDEBAR STYLES --- */
         .profile-pic-container {
             text-align: center;
             padding: 0 0 20px 0;
         }
-
         .profile-pic {
             width: 150px;
             height: 150px;
-            border-radius: 50%; /* ทำให้เป็นวงกลม */
-            border: 5px solid white; /* ขอบสีขาว */
-            object-fit: cover; /* ทำให้รูปภาพเต็มพื้นที่วงกลม */
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
             display: block; 
-            margin: 0 auto; /* จัดกึ่งกลางรูปภาพ */
+            margin: 0 auto;
         }
-
-        /* สไตล์สำหรับส่วนหัว (CONTACT, EDUCATION, SKILLS) */
         .section-header {
             text-align: center;
             font-size: 1.2em;
@@ -46,16 +75,13 @@
             letter-spacing: 1px;
             padding: 10px 0;
             margin: 0 20px 15px 20px;
-            border-bottom: 1px solid #ffffff; /* เส้นคั่นด้านล่าง */
+            border-bottom: 1px solid #ffffff;
         }
-
-        /* สไตล์สำหรับ CONTACT */
         .contact-item {
             display: flex;
             align-items: center;
             margin: 15px 20px;
         }
-
         .contact-icon {
             font-size: 1.2em;
             width: 30px;
@@ -63,36 +89,28 @@
             margin-right: 15px;
             color: #ffffff;
         }
-
         .contact-text a {
             color: #ffffff;
             text-decoration: none;
             word-break: break-all;
         }
-
-        /* สไตล์สำหรับ EDUCATION & SKILLS */
         .education-item {
             margin: 15px 20px;
         }
-
         .edu-period {
             font-weight: bold;
             margin-bottom: 5px;
         }
-
         .edu-uni {
             font-size: 1.1em;
             margin-bottom: 5px;
         }
-
         .detail-list {
             list-style: none;
             padding-left: 15px;
             margin-top: 5px;
             margin-bottom: 20px;
         }
-
-        /* สร้าง Bullet Point ใหม่ */
         .detail-list li::before {
             content: '•';
             color: #ffffff;
@@ -101,82 +119,229 @@
             width: 1em;
             margin-left: -1em;
         }
-        
         .skills-section .detail-list {
             margin: 0 20px 20px 20px;
             padding-left: 20px;
         }
-
         .skills-section .detail-list li {
             margin-bottom: 8px;
         }
-
+        
+        /* --- WORK EXPERIENCE STYLES --- (NEW) */
+        .work-header {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2e64d7;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #2e64d7;
+        }
+        .job-entry {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        .job-icon-container {
+            width: 40px;
+            margin-right: 20px;
+            text-align: center;
+        }
+        .job-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #0b1a3d;
+            border: 3px solid #0b1a3d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .job-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .job-icon.hospital {
+            background-color: #ffffff;
+            border-color: #c90000;
+        }
+        .job-icon.pc-co {
+            background-color: #ffffff;
+            border-color: #0a8a0f;
+        }
+        .job-icon-container::after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 100%;
+            background: #0b1a3d;
+            margin: 0 auto;
+            position: relative;
+            z-index: -1;
+            margin-top: -3px;
+        }
+        .job-entry:last-child .job-icon-container::after {
+            display: none;
+        }
+        .job-details {
+            flex-grow: 1;
+        }
+        .job-details .title-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        .job-details h3 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #0b1a3d;
+        }
+        .job-details .date {
+            font-size: 0.9em;
+            color: #555;
+            font-weight: bold;
+        }
+        .job-details .company {
+            font-weight: bold;
+            color: #0b1a3d;
+            margin-bottom: 10px;
+        }
+        .job-details .description-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 5px;
+            color: #333;
+        }
+        .job-details .description-list li {
+            margin-bottom: 5px;
+        }
+        /* ------------------------------------------------------------- */
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
+    <div class="container">
+        <div class="sidebar">
 
-        <div class="profile-pic-container">
-            <img src="./image/profile.jpg" alt="Profile Picture" class="profile-pic">
-        </div>
+            <div class="profile-pic-container">
+                <img src="./image/profile.jpg" alt="Profile Picture" class="profile-pic">
+            </div>
 
-        <div class="section-header">CONTACT</div>
-        <div class="contact-section">
-            <div class="contact-item">
-                <i class="fas fa-phone contact-icon"></i>
-                <div class="contact-text">096-168-5249</div>
+            <div class="section-header">CONTACT</div>
+            <div class="contact-section">
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <div class="contact-text">096-168-5249</div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div class="contact-text"><a href="mailto:teaplus.suwan@gmail.com">teaplus.suwan@gmail.com</a></div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    <div class="contact-text"><a href="https://www.linkedin.com/in/teaplus-ssuwan">www.linkedin.com/in/teaplus-ssuwan</a></div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github contact-icon"></i>
+                    <div class="contact-text"><a href="https://github.com/TeaplusSSuwan">https://github.com/TeaplusSSuwan</a></div>
+                </div>
             </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope contact-icon"></i>
-                <div class="contact-text"><a href="mailto:teaplus.suwan@gmail.com">teaplus.suwan@gmail.com</a></div>
-            </div>
-            <div class="contact-item">
-                <i class="fab fa-linkedin contact-icon"></i>
-                <div class="contact-text"><a href="https://www.linkedin.com/in/teaplus-ssuwan">www.linkedin.com/in/teaplus-ssuwan</a></div>
-            </div>
-            <div class="contact-item">
-                <i class="fab fa-github contact-icon"></i>
-                <div class="contact-text"><a href="https://github.com/TeaplusSSuwan">https://github.com/TeaplusSSuwan</a></div>
-            </div>
-        </div>
 
-        <div class="section-header">EDUCATION</div>
-        <div class="education-section">
-            <div class="education-item">
-                <div class="edu-period">2020 - 2023</div>
-                <div class="edu-uni">มหาวิทยาลัยเชียงใหม่</div>
+            <div class="section-header">EDUCATION</div>
+            <div class="education-section">
+                <div class="education-item">
+                    <div class="edu-period">2020 - 2023</div>
+                    <div class="edu-uni">มหาวิทยาลัยเชียงใหม่</div>
+                    <ul class="detail-list">
+                        <li>
+                            วิทยาศาสตรบัณฑิต (วท.บ.)<br>
+                            บูรณาการการอุตสาหกรรมดิจิทัล<br>
+                            GPA: 3.02
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-header">SKILLS</div>
+            <div class="skills-section">
                 <ul class="detail-list">
-                    <li>วิทยาศาสตรบัณฑิต (วท.บ.)<br>
-                บูรณาการการอุตสาหกรรมดิจิทัล<br>
-                GPA: 3.02</li>
+                    <li>Documentation</li>
+                    <li>Database Administration</li>
+                    <li>IBM Db2</li>
+                    <li>Software Development</li>
+                    <li>Artificial Intelligence (AI)</li>
+                    <li>JavaScript</li>
+                    <li>Angular</li>
+                    <li>Vue</li>
+                    <li>Java</li>
+                    <li>Spring Boot</li>
+                    <li>node express</li>
+                    <li>Python</li>
+                    <li>Jupyter</li>
+                    <li>Flutter</li>
+                    <li>n8n</li>
+                    <li>basic infrastructure</li>
                 </ul>
             </div>
-        </div>
 
-        <div class="section-header">SKILLS</div>
-        <div class="skills-section">
-            <ul class="detail-list">
-                <li>Documentation</li>
-                <li>Database Administration</li>
-                <li>IBM Db2</li>
-                <li>Software Development</li>
-                <li>Artificial Intelligence (AI)</li>
-                <li>JavaScript</li>
-                <li>Angular</li>
-                <li>Vue</li>
-                <li>Java</li>
-                <li>Spring Boot</li>
-                <li>node express</li>
-                <li>Python</li>
-                <li>Jupyter</li>
-                <li>Flutter</li>
-                <li>n8n</li>
-                <li>basic infrastructure</li>
-            </ul>
-        </div>
+        </div> 
+        <div class="main-content">
 
-    </div>
+            <div class="header">
+                <h1>TEAPLUS SRISUWAN</h1>
+                <h2>COMPUTER TECHNICAL OFFICER</h2>
+            </div>
+            
+            <div class="work-header">WORK EXPERIENCE</div>
+
+            <div class="job-entry">
+                <div class="job-icon-container">
+                    <div class="job-icon hospital">
+                        <img src="./image/maeai.jpg" alt="Hospital Logo">
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="title-line">
+                        <h3>โรงพยาบาลแม่ฮาย</h3>
+                        <span class="date">2024 - PRESENT</span>
+                    </div>
+                    <div class="company">สังกัดสำนักงานสาธารณสุขจังหวัดเชียงใหม่</div>
+                    <h3>Computer Technical Officer (นักวิชาการคอมพิวเตอร์)</h3>
+                    <ul class="description-list">
+                        <li>คณะกรรมการสารสนเทศและเวชระเบียน</li>
+                        <li>คณะกรรมการศูนย์ปฏิบัติการภาวะฉุกเฉินระดับอำเภอ</li>
+                        <li>คณะกรรมการการใช้งานห้องปฏิบัติการทางการแพทย์อย่างสมเหตุสมผล</li>
+                        <li>ดูแลซ่อมบำรุงระบบฐานข้อมูลทางการแพทย์</li>
+                        <li>ดูแลปรับปรุงจัดหาและติดตั้งครุภัณฑ์คอมพิวเตอร์ อุปกรณ์ต่อพ่วง และอิเล็กทรอนิกส์</li>
+                        <li>ดูแลปรับปรุงระบบเครือข่ายและระบบกระจายสัญญาณไร้สาย</li>
+                        <li>ดูแลและพัฒนาระบบเว็บไซต์ประชาสัมพันธ์ของโรงพยาบาล</li>
+                        <li>จัดทำสถิติและประเมินตัวชี้วัดตามฐาน และแบบรายงานกำสารสนเทศและเวชระเบียน</li>
+                        <li>ดูแลแผนการจัดห้องประชุม และการประชุมทางไกลของโรงพยาบาล</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-icon-container">
+                    <div class="job-icon pc-co">
+                        <img src="./image/pcc.jpg" alt="PC Co. Logo">
+                    </div>
+                </div>
+                <div class="job-details">
+                    <div class="title-line">
+                        <h3>Professional Computer Co., Ltd.</h3>
+                        <span class="date">2023 - 2024</span>
+                    </div>
+                    <h3>Full Stack Developer</h3>
+                    <ul class="description-list">
+                        <li>ได้รับมอบหมายในการพัฒนาระบบฐานข้อมูลเพิ่มเติมให้แก่กรมสรรพากร</li>
+                        <li>ได้รับมอบหมายในการพัฒนาบนระบบภาษีธุรกิจเฉพาะให้แก่กรมสรรพากร</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
 
 </body>
 </html>
