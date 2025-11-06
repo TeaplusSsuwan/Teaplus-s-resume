@@ -2,18 +2,17 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>TEAPLUS SRISUWAN - Resume</title>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <style>
-      /* CSS จากคำตอบก่อนหน้า (Sidebar, Contact, Education, Skills) 
-           รวมถึง CSS ใหม่ด้านบน (Layout, Header, Work Experience) ให้ใส่ไว้ที่นี่ทั้งหมด */
 
-      /* ------------------------------------------------------------- */
-      /* --- LAYOUT & HEADER STYLES --- */
+    <style>
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -25,7 +24,7 @@
         max-width: 1200px;
         margin: 0 auto;
         background-color: #ffffff;
-        display: flex;
+        display: flex; /* ใช้ Flexbox สำหรับ Layout 2 คอลัมน์ */
       }
       .sidebar {
         width: 300px;
@@ -44,6 +43,7 @@
         padding-bottom: 10px;
         margin-bottom: 25px;
         border-bottom: 1px solid #ccc;
+        display: none; /* ซ่อนบน Desktop ให้แสดงบน Mobile เท่านั้น */
       }
       .header h1 {
         font-size: 2.5em;
@@ -56,11 +56,10 @@
         color: #333;
         font-weight: normal;
       }
-
       /* --- SIDEBAR STYLES --- */
       .profile-pic-container {
         text-align: center;
-        padding: 0 0 20px 0;
+        padding: 0 20px 20px 20px;
       }
       .profile-pic {
         width: 150px;
@@ -129,8 +128,7 @@
       .skills-section .detail-list li {
         margin-bottom: 8px;
       }
-
-      /* --- WORK EXPERIENCE STYLES --- (NEW) */
+      /* --- WORK EXPERIENCE STYLES --- */
       .work-header {
         font-size: 1.6em;
         font-weight: bold;
@@ -220,63 +218,52 @@
         margin-bottom: 5px;
       }
       /* --- SEMINAR STYLES --- */
-
       .seminar-header {
         font-size: 1.6em;
         font-weight: bold;
-        color: #0b1a3d; /* สีเข้มสำหรับหัวข้อหลัก */
-        text-align: right; /* จัดชิดขวาตามรูป */
+        color: #0b1a3d;
+        text-align: right;
         padding-bottom: 5px;
-        margin-top: 50px; /* เว้นระยะห่างจากส่วน Work Experience */
+        margin-top: 50px;
         margin-bottom: 25px;
         border-bottom: 2px solid #0b1a3d;
       }
-
       .seminar-content {
-        /* ใช้ Grid เพื่อจัดวางเนื้อหากับรูปภาพ */
         display: grid;
-        grid-template-columns: 2fr 1fr; /* คอลัมน์ซ้าย (เนื้อหา) กว้างกว่าคอลัมน์ขวา (รูปภาพ) */
+        grid-template-columns: 2fr 1fr;
         gap: 20px;
       }
-
       .seminar-list {
-        grid-column: 1 / 2; /* ส่วนนี้อยู่คอลัมน์ซ้าย */
+        grid-column: 1 / 2;
       }
-
       .seminar-image-section {
-        grid-column: 2 / 3; /* ส่วนนี้อยู่คอลัมน์ขวา */
+        grid-column: 2 / 3;
         display: flex;
         flex-direction: column;
         gap: 20px;
       }
-
       .seminar-image {
         width: 100%;
-        /* ปรับให้รูปภาพดูคล้ายกับกรอบที่มีขอบมน */
         border: 1px solid #ddd;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         max-width: 100%;
         height: auto;
       }
-
       .seminar-item {
         margin-bottom: 25px;
       }
-
       .seminar-title {
         font-weight: bold;
         color: #0b1a3d;
         font-size: 1.1em;
         margin-bottom: 5px;
       }
-
       .seminar-issued {
         font-size: 0.9em;
         color: #555;
         margin-bottom: 10px;
       }
-
       .seminar-details {
         list-style-type: disc;
         padding-left: 20px;
@@ -287,15 +274,17 @@
         margin-bottom: 3px;
       }
 
-      /* สไตล์สำหรับ Hack Health section ที่มีรูปซ้อนกัน */
+      /* --- การแก้ไขสำหรับ Hackhealth Section เพื่อแก้ปัญหาการทับซ้อน --- */
       .hackhealth-section {
-        position: relative;
+        position: relative; /* กำหนดตำแหน่ง relative เพื่อให้ลูกที่ absolute อ้างอิง */
         margin-top: 20px;
+        padding-bottom: 30px; /* เพิ่มพื้นที่ด้านล่างป้องกันการทับรายการถัดไป */
+        z-index: 0;
       }
       .hackhealth-text {
         position: relative;
-        z-index: 2; /* ให้อยู่ด้านบน */
-        background: white;
+        z-index: 3; /* ให้ข้อความอยู่ด้านหน้าสุด */
+        background: white; /* ใส่พื้นหลังสีขาวเพื่อไม่ให้รูปภาพด้านล่างเบลอข้อความ */
         padding: 10px 0;
       }
       .hackhealth-image-1 {
@@ -305,41 +294,37 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 10px;
       }
-      /* สไตล์สำหรับใบรับรองที่ซ้อนอยู่ด้านล่าง */
       .hackhealth-cert-overlay {
         position: absolute;
-        bottom: -30px; /* เลื่อนลงด้านล่างของรูปหลัก */
-        left: -20px; /* เลื่อนไปด้านซ้ายของรูปหลัก */
+        bottom: 0; /* ปรับให้อยู่ที่ส่วนท้ายของ hackhealth-section (ปรับตาม padding-bottom) */
+        left: 5px; /* ปรับให้อยู่ซ้ายเล็กน้อย */
         width: 50%;
-        z-index: 1; /* ให้อยู่ด้านล่าง */
-        transform: rotate(-5deg); /* หมุนเล็กน้อย */
+        z-index: 2; /* อยู่ด้านหลังข้อความ (z-index: 3) แต่ด้านหน้าภาพหลัก (ถ้ามี) */
+        transform: rotate(-5deg);
       }
-      /* --- CERTIFICATES STYLES --- */
+      /* --- สิ้นสุดการแก้ไขสำหรับ Hackhealth Section --- */
 
+      /* --- CERTIFICATES STYLES --- */
       .certificates-header {
         font-size: 1.6em;
         font-weight: bold;
         color: #0b1a3d;
         padding-bottom: 5px;
-        margin-top: 50px; /* เว้นระยะห่างจากส่วน Seminar */
+        margin-top: 50px;
         margin-bottom: 25px;
         border-bottom: 2px solid #0b1a3d;
       }
-
       .certificate-entry {
         display: flex;
-        align-items: flex-start; /* จัดเรียงด้านบน */
+        align-items: flex-start;
         margin-bottom: 30px;
         gap: 15px;
       }
-
       .certificate-image-container {
-        flex-shrink: 0; /* ไม่ให้หดตัว */
-        width: 250px; /* ความกว้างสำหรับรูปประกาศนียบัตร */
+        flex-shrink: 0;
+        width: 250px;
         position: relative;
       }
-
-      /* สไตล์สำหรับรูปภาพขนาดเล็กที่ซ้อนกัน */
       .certificate-image-container img {
         width: 100%;
         height: auto;
@@ -349,7 +334,6 @@
         z-index: 2;
         position: relative;
       }
-
       .cert-overlay-1,
       .cert-overlay-2 {
         position: absolute;
@@ -360,59 +344,168 @@
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
-
       .cert-overlay-1 {
         top: 5px;
         left: -5px;
         transform: rotate(-2deg);
         background-color: #e5e5e5;
       }
-
       .cert-overlay-2 {
         top: 10px;
         left: -10px;
         transform: rotate(-4deg);
         background-color: #ddd;
       }
-
       .certificate-details {
         flex-grow: 1;
-        padding-top: 10px; /* เพื่อให้ข้อความดูเหมือนอยู่กึ่งกลางรูปภาพ */
+        padding-top: 10px;
       }
-
       .cert-title {
         font-weight: bold;
         color: #0b1a3d;
         font-size: 1.1em;
         margin-bottom: 5px;
       }
-
       .cert-issued {
         font-size: 0.9em;
         color: #555;
         margin-bottom: 5px;
       }
-
-      /* สไตล์พิเศษสำหรับรายการ Certificates ที่ไม่มีรูปภาพขนาดใหญ่ */
       .certificate-compact {
         display: flex;
         justify-content: space-between;
         margin-bottom: 25px;
       }
-
       .qr-code-section {
         width: 150px;
         text-align: right;
       }
-
       .qr-code-section img {
         width: 100px;
         height: 100px;
         border: 1px solid #0b1a3d;
       }
       /* ------------------------------------------------------------- */
+      /* --- MOBILE RESPONSIVE STYLES (เริ่มที่หน้าจอ 768px ลงไป) --- */
+      /* ------------------------------------------------------------- */
+      @media (max-width: 768px) {
+        /* 1. LAYOUT หลัก: เปลี่ยนจาก 2 คอลัมน์เป็น 1 คอลัมน์ (Stacking) */
+        .container {
+          flex-direction: column;
+        }
+
+        /* 2. SIDEBAR: ขยายให้เต็มความกว้าง */
+        .sidebar {
+          width: 100%;
+          min-height: auto;
+          padding: 20px;
+          box-sizing: border-box;
+        }
+
+        /* 3. HEADER (ชื่อ/ตำแหน่ง): แสดงผลที่ด้านบนสุดของหน้า, ย้ายจาก main-content มาที่ sidebar */
+        .header {
+          display: block; /* แสดงผลสำหรับ Mobile */
+          border-bottom: none;
+          padding-bottom: 5px;
+          text-align: center;
+          margin-bottom: 5px;
+        }
+        .header h1 {
+          font-size: 1.8em;
+          color: #ffffff;
+        }
+        .header h2 {
+          font-size: 0.9em;
+          color: #ffffff;
+        }
+
+        /* ปรับให้รูปโปรไฟล์และ Header ดูดีขึ้นบนมือถือ */
+        .profile-pic-container {
+          padding: 0 0 10px 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .profile-pic {
+          width: 100px;
+          height: 100px;
+          margin-bottom: 10px;
+        }
+
+        /* ปรับส่วนหัวข้อใน Sidebar */
+        .section-header {
+          margin: 20px 0 15px 0;
+          font-size: 1.1em;
+        }
+
+        /* 4. MAIN CONTENT: ขยายให้เต็มความกว้าง, ปรับ padding */
+        .main-content {
+          padding: 20px;
+        }
+
+        /* 5. SEMINAR: เปลี่ยนจาก Grid 2 คอลัมน์เป็น 1 คอลัมน์ */
+        .seminar-content {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .seminar-list,
+        .seminar-image-section {
+          grid-column: 1 / 2;
+        }
+        .seminar-image-section {
+          order: -1;
+          display: none; /* ซ่อนคอลัมน์รูปภาพด้านขวาออกไป เนื่องจากซ้ำกับรูปในรายการ */
+        }
+        .seminar-header {
+          text-align: left; /* จัดชิดซ้าย */
+        }
+
+        /* ปรับ Hackhealth สำหรับ Mobile */
+        .hackhealth-section {
+          padding-bottom: 0; /* ไม่ต้องมี padding เยอะบน mobile */
+          margin-bottom: 25px;
+        }
+        .hackhealth-cert-overlay {
+          /* ปรับตำแหน่งบน mobile ให้เหมาะสมขึ้น หรืออาจจะซ่อนไปเลยก็ได้ */
+          bottom: 5px;
+          left: 5px;
+          width: 40%;
+          transform: rotate(-5deg);
+          /* ถ้าต้องการซ่อนบน Mobile: display: none; */
+        }
+
+        /* 6. CERTIFICATES: เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
+        .certificate-entry {
+          flex-direction: column;
+          margin-bottom: 30px;
+        }
+        .certificate-image-container {
+          width: 100%;
+          max-width: 300px;
+          margin: 0 auto 10px auto;
+        }
+        .cert-overlay-1,
+        .cert-overlay-2 {
+          display: none; /* ซ่อนเอฟเฟกต์ซ้อนทับเพื่อความเรียบง่าย */
+        }
+
+        /* ปรับรายการ Compact (watsonx / ML) */
+        .certificate-compact {
+          flex-direction: column;
+        }
+        .qr-code-section {
+          width: 100%;
+          text-align: center;
+          margin-top: 20px;
+        }
+        .qr-code-section img {
+          width: 80px;
+          height: 80px;
+        }
+      }
     </style>
   </head>
+
   <body>
     <div class="container">
       <div class="sidebar">
@@ -422,14 +515,22 @@
             alt="Profile Picture"
             class="profile-pic"
           />
+
+          <div class="header">
+            <h1>TEAPLUS SRISUWAN</h1>
+
+            <h2>COMPUTER TECHNICAL OFFICER</h2>
+          </div>
         </div>
 
         <div class="section-header">CONTACT</div>
+
         <div class="contact-section">
           <div class="contact-item">
             <i class="fas fa-phone contact-icon"></i>
             <div class="contact-text">096-168-5249</div>
           </div>
+
           <div class="contact-item">
             <i class="fas fa-envelope contact-icon"></i>
             <div class="contact-text">
@@ -438,6 +539,7 @@
               >
             </div>
           </div>
+
           <div class="contact-item">
             <i class="fab fa-linkedin contact-icon"></i>
             <div class="contact-text">
@@ -446,6 +548,12 @@
               >
             </div>
           </div>
+
+          <div class="contact-item">
+            <i class="fas fa-location-dot contact-icon"></i>
+            <div class="contact-text">เชียงใหม่</div>
+          </div>
+
           <div class="contact-item">
             <i class="fab fa-github contact-icon"></i>
             <div class="contact-text">
@@ -457,10 +565,13 @@
         </div>
 
         <div class="section-header">EDUCATION</div>
+
         <div class="education-section">
           <div class="education-item">
             <div class="edu-period">2020 - 2023</div>
+
             <div class="edu-uni">มหาวิทยาลัยเชียงใหม่</div>
+
             <ul class="detail-list">
               <li>
                 วิทยาศาสตรบัณฑิต (วท.บ.)<br />
@@ -472,33 +583,45 @@
         </div>
 
         <div class="section-header">SKILLS</div>
+
         <div class="skills-section">
           <ul class="detail-list">
             <li>Documentation</li>
+
             <li>Database Administration</li>
+
             <li>IBM Db2</li>
+
             <li>Software Development</li>
+
             <li>Artificial Intelligence (AI)</li>
+
             <li>JavaScript</li>
+
             <li>Angular</li>
+
             <li>Vue</li>
+
             <li>Java</li>
+
             <li>Spring Boot</li>
+
             <li>node express</li>
+
             <li>Python</li>
+
             <li>Jupyter</li>
+
             <li>Flutter</li>
+
             <li>n8n</li>
+
             <li>basic infrastructure</li>
           </ul>
         </div>
       </div>
-      <div class="main-content">
-        <div class="header">
-          <h1>TEAPLUS SRISUWAN</h1>
-          <h2>COMPUTER TECHNICAL OFFICER</h2>
-        </div>
 
+      <div class="main-content">
         <div class="work-header">WORK EXPERIENCE</div>
 
         <div class="job-entry">
@@ -507,30 +630,42 @@
               <img src="./image/maeai.jpg" alt="Hospital Logo" />
             </div>
           </div>
+
           <div class="job-details">
             <div class="title-line">
               <h3>โรงพยาบาลแม่อาย</h3>
               <span class="date">2024 - PRESENT</span>
             </div>
+
             <div class="company">สังกัดสำนักงานสาธารณสุขจังหวัดเชียงใหม่</div>
+
             <h3>Computer Technical Officer (นักวิชาการคอมพิวเตอร์)</h3>
+
             <ul class="description-list">
               <li>คณะกรรมการสารสนเทศและเวชระเบียน</li>
+
               <li>คณะกรรมการศูนย์ปฏิบัติการภาวะฉุกเฉินระดับอำเภอ</li>
+
               <li>
                 คณะกรรมการการใช้งานห้องปฏิบัติการทางการแพทย์อย่างสมเหตุสมผล
               </li>
+
               <li>ดูแลซ่อมบำรุงระบบฐานข้อมูลทางการแพทย์</li>
+
               <li>
-                ดูแลปรับปรุงจัดหาและติดตั้งครุภัณฑ์คอมพิวเตอร์ อุปกรณ์ต่อพ่วง
-                และอิเล็กทรอนิกส์
+                ดูแลปรับปรุงจัดหาและติดตั้งครุภัณฑ์คอมพิวเตอร์
+                อุปกรณ์ต่อพ่วงและอิเล็กทรอนิกส์
               </li>
+
               <li>ดูแลปรับปรุงระบบเครือข่ายและระบบกระจายสัญญาณไร้สาย</li>
+
               <li>ดูแลและพัฒนาระบบเว็บไซต์ประชาสัมพันธ์ของโรงพยาบาล</li>
+
               <li>
                 จัดทำสถิติและประเมินตัวชี้วัดตามฐาน
                 และแบบรายงานกำสารสนเทศและเวชระเบียน
               </li>
+
               <li>ดูแลแผนการจัดห้องประชุม และการประชุมทางไกลของโรงพยาบาล</li>
             </ul>
           </div>
@@ -542,194 +677,219 @@
               <img src="./image/pcc.jpg" alt="PC Co. Logo" />
             </div>
           </div>
+
           <div class="job-details">
             <div class="title-line">
               <h3>Professional Computer Co., Ltd.</h3>
               <span class="date">2023 - 2024</span>
             </div>
+
             <h3>Full Stack Developer</h3>
+
             <ul class="description-list">
               <li>
                 ได้รับมอบหมายในการพัฒนาระบบฐานข้อมูลเพิ่มเติมให้แก่กรมสรรพากร
               </li>
+
               <li>
                 ได้รับมอบหมายในการพัฒนาบนระบบภาษีธุรกิจเฉพาะให้แก่กรมสรรพากร
               </li>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div>
-      <div class="seminar-header">SEMINAR</div>
+        <div class="seminar-header">SEMINAR</div>
 
-      <div class="seminar-content">
-        <div class="seminar-list">
-          <div class="seminar-item">
-            <div class="seminar-title">Low Code Power Automate Flow</div>
-            <div class="seminar-issued">Issued: Microsoft</div>
-            <ul class="seminar-details">
-              <li>
-                การอบรมร่วมกับกรมสรรพากรในการใช้ LowCodePowerAutomate
-                ในการประยุกต์ใช้ในการทำงานทางราชการ
-              </li>
-            </ul>
-          </div>
+        <div class="seminar-content">
+          <div class="seminar-list">
+            <div class="seminar-item">
+              <div class="seminar-title">Low Code Power Automate Flow</div>
 
-          <div class="seminar-item">
-            <div class="seminar-title">microsoft 365 copilot</div>
-            <div class="seminar-issued">Issued: Microsoft</div>
-            <ul class="seminar-details">
-              <li>
-                การอบรมร่วมกับกรมสรรพากรในการใช้ microsoft365copilot (AI)
-                ในการประยุกต์ใช้ในการทำงานทางราชการ
-              </li>
-            </ul>
-          </div>
+              <div class="seminar-issued">Issued: Microsoft</div>
 
-          <div class="seminar-item">
-            <div class="seminar-title">
-              IBM Watson.ai Hackathon Powered by Computer Union
-            </div>
-            <div class="seminar-issued">Issued: IBM, Computer Union</div>
-            <ul class="seminar-details">
-              <li>
-                การประกวดแข่งขันในการพัฒนา AI
-                ร่วมกับการพัฒนาโปรแกรมเพื่อนำไปใช้งานพัฒนาโปรแกรม โดยใช้
-                watsonx.ai ในการพัฒนา
-              </li>
-            </ul>
-          </div>
-
-          <div class="hackhealth-section">
-            <div class="hackhealth-text">
-              <div class="seminar-title">
-                Hack Health Cyber Security Hackathon
-              </div>
-              <div class="seminar-issued">
-                Issued: Ministry of Public Health of Thailand
-              </div>
               <ul class="seminar-details">
                 <li>
-                  ชนะเลิศอันดับที่ 1
-                  การประกวดแข่งขันในการพัฒนาระบบรักษาความปลอดภัยทางไซเบอร์เพื่อผลักดันการพัฒนาบุคลากรด้านความมั่นคงปลอดภัยไซเบอร์
+                  การอบรมร่วมกับกรมสรรพากรในการใช้ LowCodePowerAutomate
+                  ในการประยุกต์ใช้ในการทำงานทางราชการ
                 </li>
               </ul>
             </div>
-            <img
-              src="path/to/hackhealth-main-pic.jpg"
-              alt="Hack Health Team"
-              class="hackhealth-image-1"
-            />
-            <img
-              src="path/to/hackhealth-cert-pic.jpg"
-              alt="Hack Health Certificate"
-              class="hackhealth-image-1 hackhealth-cert-overlay"
-            />
-          </div>
 
-          <div class="seminar-item">
-            <div class="seminar-title">
-              โครงการพัฒนาระบบคลังกลางสาธารณสุขของประเทศไทย
-            </div>
-            <div class="seminar-issued">
-              Issued: Ministry of Public Health of Thailand
-            </div>
-            <ul class="seminar-details">
-              <li>
-                การอบรมเสริมสร้างความรู้ความเข้าใจรูปแบบการนำส่งข้อมูลมาตราฐานทางการแพทย์และแนวทางวิธีการในการนำส่งข้อมูลทางการแพทย์
-              </li>
-            </ul>
-          </div>
-        </div>
+            <div class="seminar-item">
+              <div class="seminar-title">microsoft 365 copilot</div>
 
-        <div class="seminar-image-section">
-          <img
-            src="path/to/ibm-watson-pic.jpg"
-            alt="IBM Watsonx.ai Seminar"
-            class="seminar-image"
-          />
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="certificates-header">CERTIFICATES</div>
+              <div class="seminar-issued">Issued: Microsoft</div>
 
-      <div class="certificates-container">
-        <div class="certificate-entry">
-          <div class="certificate-image-container">
-            <div class="cert-overlay-2"></div>
-            <div class="cert-overlay-1"></div>
-            <img
-              src="path/to/cyber-cert-main.jpg"
-              alt="Cybersecurity Professional Certificate"
-            />
-          </div>
-          <div class="certificate-details">
-            <div class="cert-title">
-              ประกาศนียบัตรแสดงว่าสำเร็จการอบรมด้านมั่นคงปลอดภัยทางไซเบอร์ระดับพื้นฐาน
-              และ ระดับผู้เชี่ยวชาญ
+              <ul class="seminar-details">
+                <li>
+                  การอบรมร่วมกับกรมสรรพากรในการใช้ microsoft365copilot (AI)
+                  ในการประยุกต์ใช้ในการทำงานทางราชการ
+                </li>
+              </ul>
             </div>
-            <div class="cert-issued">
-              Issued :
-              สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ
-            </div>
-          </div>
-        </div>
 
-        <div class="certificate-entry">
-          <div class="certificate-image-container">
-            <img src="path/to/link-asia-cert.jpg" alt="LINK ASIA Certificate" />
-          </div>
-          <div class="certificate-details">
-            <div class="cert-title">
-              ประกาศนียบัตรแสดงว่าสำเร็จการอบรมการวางแผนและติดตั้งระบบสายสื่อสารสำหรับระบบเครือข่าย
-            </div>
-            <div class="cert-issued">Issued : LINK ASIA LIMITED</div>
-          </div>
-        </div>
-
-        <div class="certificate-entry">
-          <div class="certificate-image-container">
-            <img src="path/to/cmu-ai-cert.jpg" alt="CMU AI 101 Certificate" />
-          </div>
-          <div class="certificate-details">
-            <div class="cert-title">
-              ประกาศนียบัตรแสดงว่าสำเร็จการอบรมในหัวข้อปัญญาประดิษฐ์ 101
-            </div>
-            <div class="cert-issued">
-              Issued : คณะวิทยาศาสตร์ มหาวิทยาลัยเชียงใหม่
-            </div>
-          </div>
-        </div>
-
-        <div class="certificate-compact">
-          <div>
-            <div class="certificate-entry" style="margin-bottom: 15px">
-              <div class="certificate-image-container" style="width: 100px">
-                <img src="path/to/watsonx-cert.jpg" alt="Watsonx Certificate" />
+            <div class="seminar-item">
+              <div class="seminar-title">
+                IBM Watson.ai Hackathon Powered by Computer Union
               </div>
-              <div class="certificate-details" style="padding-top: 0">
-                <div class="cert-title">
-                  watsonx.data Technical Sales Advanced
+
+              <div class="seminar-issued">Issued: IBM, Computer Union</div>
+
+              <ul class="seminar-details">
+                <li>
+                  การประกวดแข่งขันในการพัฒนา AI
+                  ร่วมกับการพัฒนาโปรแกรมเพื่อนำไปใช้งานพัฒนาโปรแกรม โดยใช้
+                  watsonx.ai ในการพัฒนา
+                </li>
+              </ul>
+              <img
+                src="./image/ibm-watson-pic.jpg"
+                alt="IBM Watsonx.ai Seminar"
+                class="seminar-image"
+              />
+            </div>
+
+            <div class="hackhealth-section">
+              <div class="hackhealth-text">
+                <div class="seminar-title">
+                  Hack Health Cyber Security Hackathon
                 </div>
-                <div class="cert-issued">Issued : IBM</div>
+
+                <div class="seminar-issued">
+                  Issued: Ministry of Public Health of Thailand
+                </div>
+
+                <ul class="seminar-details">
+                  <li>
+                    ชนะเลิศอันดับที่ 1
+                    การประกวดแข่งขันในการพัฒนาระบบรักษาความปลอดภัยทางไซเบอร์เพื่อผลักดันการพัฒนาบุคลากรด้านความมั่นคงปลอดภัยไซเบอร์
+                  </li>
+                </ul>
               </div>
+
+              <img
+                src="./image/hackhealth-main-pic.jpg"
+                alt="Hack Health Team"
+                class="hackhealth-image-1"
+              />
+
+              <img
+                src="./image/hackhealth-cert.jpg"
+                alt="Hack Health Certificate"
+                class="hackhealth-image-1 hackhealth-cert-overlay"
+              />
+            </div>
+            <div class="seminar-item">
+              <div class="seminar-title">
+                โครงการพัฒนาระบบคลังกลางสาธารณสุขของประเทศไทย
+              </div>
+
+              <div class="seminar-issued">
+                Issued: Ministry of Public Health of Thailand
+              </div>
+
+              <ul class="seminar-details">
+                <li>
+                  การอบรมเสริมสร้างความรู้ความเข้าใจรูปแบบการนำส่งข้อมูลมาตราฐานทางการแพทย์และแนวทางวิธีการในการนำส่งข้อมูลทางการแพทย์
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="seminar-image-section"></div>
+        </div>
+
+        <div class="certificates-header">CERTIFICATES</div>
+
+        <div class="certificates-container">
+          <div class="certificate-entry">
+            <div class="certificate-image-container">
+              <div class="cert-overlay-2"></div>
+
+              <div class="cert-overlay-1"></div>
+
+              <img
+                src="./image/cyber-cert-main.jpg"
+                alt="Cybersecurity Professional Certificate"
+              />
             </div>
 
-            <div class="certificate-entry" style="margin-bottom: 0">
-              <div class="certificate-image-container" style="width: 70px">
-                <img
-                  src="path/to/ml-cert-icon.jpg"
-                  alt="ML Crash Course Icon"
-                />
+            <div class="certificate-details">
+              <div class="cert-title">
+                ประกาศนียบัตรแสดงว่าสำเร็จการอบรมด้านมั่นคงปลอดภัยทางไซเบอร์ระดับพื้นฐาน
+                และ ระดับผู้เชี่ยวชาญ
               </div>
-              <div class="certificate-details" style="padding-top: 0">
-                <div class="cert-title">
-                  Machine Learning Crash Course: Linear regression
+
+              <div class="cert-issued">
+                Issued :
+                สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ
+              </div>
+            </div>
+          </div>
+
+          <div class="certificate-entry">
+            <div class="certificate-image-container">
+              <img
+                src="./image/link-asia-cert.png"
+                alt="LINK ASIA Certificate"
+              />
+            </div>
+
+            <div class="certificate-details">
+              <div class="cert-title">
+                ประกาศนียบัตรแสดงว่าสำเร็จการอบรมการวางแผนและติดตั้งระบบสายสื่อสารสำหรับระบบเครือข่าย
+              </div>
+
+              <div class="cert-issued">Issued : LINK ASIA LIMITED</div>
+            </div>
+          </div>
+
+          <div class="certificate-entry">
+            <div class="certificate-image-container">
+              <img src="./image/cmu-ai-cert.png" alt="CMU AI 101 Certificate" />
+            </div>
+
+            <div class="certificate-details">
+              <div class="cert-title">
+                ประกาศนียบัตรแสดงว่าสำเร็จการอบรมในหัวข้อปัญญาประดิษฐ์ 101
+              </div>
+
+              <div class="cert-issued">
+                Issued : คณะวิทยาศาสตร์ มหาวิทยาลัยเชียงใหม่
+              </div>
+            </div>
+          </div>
+
+          <div class="certificate-entry">
+            <div class="certificate-image-container">
+              <img src="./image/watsonx-cert.jpg" alt="Watsonx Certificate" />
+            </div>
+            <div class="certificate-details">
+              <div class="cert-title">
+                watsonx.data Technical Sales Advanced
+              </div>
+
+              <div class="cert-issued">Issued : IBM</div>
+            </div>
+          </div>
+
+          <div class="certificate-compact">
+            <div>
+              <div class="certificate-entry" style="margin-bottom: 0">
+                <div class="certificate-image-container" style="width: 70px">
+                  <img
+                    src="./image/ml-cert-icon.png"
+                    alt="ML Crash Course Icon"
+                  />
                 </div>
-                <div class="cert-issued">Issued : google</div>
+
+                <div class="certificate-details" style="padding-top: 0">
+                  <div class="cert-title">
+                    Machine Learning Crash Course: Linear regression
+                  </div>
+
+                  <div class="cert-issued">Issued : google</div>
+                </div>
               </div>
             </div>
           </div>
